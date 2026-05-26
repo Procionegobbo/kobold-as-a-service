@@ -1,0 +1,328 @@
+
+S ::=
+    "{\"KoboldName\":\""^KoboldName^
+    "\",\"KoboldSurname\":\""^KoboldSurname^
+    "\",\"KoboldOrigin\":\""^KoboldOrigin^
+    "\",\"KoboldColor\":\""^KoboldColor^
+    "\",\"SpecialTrait\":\""^SpecialTrait^
+    "\",\"KoboldKinship\":\""^KoboldKinship^
+    "\",\"KoboldDish\":\""^KoboldDish^
+    "\",\"KoboldStory\":\""^KoboldStory^
+    "\",\"KoboldJob\":\""^CurrentJob^
+    "\"}"
+;
+
+KoboldName ::= \(
+    (s|r|p|VOC|++k)^KobPART
+    ^(KobPART)
+);
+
+KobPART ::= ass|and|VOC^r[^r]|VOC^ch|VOC^rk|r[^VOC][^(b|k|l|s|t)];
+VOC ::= a|e|i|++o|++u|y;
+
+KoboldSurname ::= ++++(\Prefix ((++++k|r|t|p|s|d|f|g|l|z|c|v|m)^KobPART2^(KobPART2)^VOC))|(_);
+KoboldOrigin ::= KobKINGDOM(_);
+KobPART2 ::= VOC^ss
+            |VOC^n[^d]
+            |VOC^r[^r]
+            |VOC^g[^h]
+            |VOC^l
+            |VOC^ch
+            |VOC^n
+            |VOC^f
+            |VOC^d
+            |VOC^r[^k]
+            |VOC^c[^c]
+            |VOC^p
+            |i^VOC;
+
+KobKINGDOM ::= \[LandType] \(KingdomPart [^KingdomPart] [^KingdomPart] [^KingdomPart] [^VOC]);
+
+KingdomPart ::= ( b[^l]^ash|trog|zwol|mop|yon|wos|zlom|krol|prot|dor|tor|yor|zor|for|por|car|cos );
+
+Prefix ::= ( \de|de|\von|von|++++_ );
+
+City ::= city [underground|flying|dead];
+LandType ::= (
+	the land|
+	the beach|
+	the valley|
+	the steppe|
+	the swamp|
+	the City|
+	the island|
+	the peninsula|
+	the outskirts|
+	the volcanic complex|
+	the glacier|
+	the dump|
+	the pit|
+	the abyss|
+	the caverns|
+	the caves|
+	the orphanage|
+	the zoo) of;
+
+
+BaseColor ::= ++++ChromaticColor
+    |+MetallicColor
+    |CrystalColor
+    |++FumbleColor;
+
+KoboldColor ::= BaseColor (and BaseColor|+++++++++_);
+
+ChromaticColor ::= red|green|blue|black|yellow|orange|brown|white|sky blue|violet|purple;
+MetallicColor ::= gold|bronze|silver|platinum|mithril|orichalcum|iron|barium;
+CrystalColor ::= crystal of (rock|diamond|quartz|emerald|ruby|glass|ice);
+
+
+FumbleColor ::= (prismatic|vermillion|gold|black|white|red|blue|green|"Bah..."|"White with beige feet"|
+	"Dark brownish"|"painted white with taupe"|brown|"Generic Kobold"|sapphire|subjective|crimson|magma|
+	"Grey with black streaks"|"Depends on who's looking"|gold|white|blue|black|yellow|blue|blellow|"Cobalt blue"|
+	"Pompeian red (red ochre)"|red|green|"Confetti pink"|black|"Silver (of Song)"|"White and Red"|
+	metal|pink|"Kamaleonte (Koboleonte)"|"Tiger grey") ;
+
+
+SpecialTrait ::= none|
+	(
+        believes [not] to be|pretends to be|hides [not] being|denies being|+was|_
+    )(
+        blind|deaf|mute|undead|demented|fake|comical|wise|valorous|hairy|gifted|
+        short|dimwit|bald|weathersensitive|flatulent|depressed|hypochondriac|bipolar
+    )|
+    has a (crest of (scales|hairs|hair|feathers)|(double|triple) tail [hairy|feathered|spiny])|
+    (speaks|believes to speak)(
+        (with (the dead|the animals|the trees|the stars|the clouds|his (friends|enemies) imaginary))|
+        (to the wind|to himself|always in a whisper|screaming|in rhyme)
+    )|
+    (+plays|believes to know how to play)(
+        the (banjo|fife|flute|double bass|piano|violin|triangle|bongo|drum)|the (ukulele|harp)
+    )|
+    (practices|knows|(believes|thinks|says|pretends|hides) to (practice|know|study) )
+    ("snake-fu"|magic|voodoo|sex with dwarven ladies|crochet)
+;
+
+
+(* ----------------------------------------- *)
+(*   Kinship                                 *)
+(* ----------------------------------------- *)
+
+KoboldKinship ::= Kinship of KoboldFumble;
+
+
+KoboldFumble ::= \(krubal|skrudo|stupid idiot|kribug|kerri|ukrabal|grandpa kenny);
+
+Kinship ::= PreKinRelative KinRelative ;
+
+PreKinRelative ::= ++++([second|++_] cousin ["in-law"] [of (first|second|third|fourth) degree] on (mother's|father's) side)|[pro^]uncle|son|a neighbor (from next door|from the clutch|from the nest)|nephew;
+KinRelative ::= (
+            of the father|of the mother|of the uncle|of the [pro^]aunt|(of the uncle|of the "great-uncle")
+            |(of the female cousin|of the male cousin) of (first|second|third|fourth) degree
+            |(of the ["great-"^|"great-great-"^]grandfather|of the ["great-"^|"great-great-"^]grandmother)
+            |(of the brother|of the sister)|of the "brother-in-law"|of the "sister-in-law"|of the "son-in-law"|of the "daughter-in-law"
+            |of the son [illegitimate|secret]|of the daughter [illegitimate|secret]
+            ) [KinRelative];
+
+
+(* ----------------------------------------- *)
+(*   Favorite food                           *)
+(* ----------------------------------------- *)
+
+KoboldDish ::=  (+Roast|+Broth|Breakfast) (KoboldFumble style|++++_);
+
+Cat ::= (++++cat [siamese|tabby|red|persian|hairless|abyssinian|angora|oriental]
+		|feline|wild cat|caracal)
+		(and (griffin|hare [assassin]|butterfly dragon|pigeon)|++_);
+
+Roast ::= (
+	(
+		(
+			stuffed roast (of kittens (milky|+_)|+_) |cutlet|chops|ribs|skewers|kebabs|
+			stew|casserole|fritters|burger|
+			sausage|luganega|tartare|strips|meatballs|
+			orecchiette (fried|in sauce|++_)|drumsticks|breast|head|
+			tail|tails|kebabs|salami|prosciutto|savory pie
+		) of Cat
+		|Cat (
+		  roasted|in a crust (of salt|of bread|++_)|
+		  fried|braised|stewed|boiled|in brine|
+		  hunter's style|grilled|porchetta style|
+		  sweet and sour|sautéed|filleted
+    )
+	)
+	[with(
+		potatoes (fried|baked|boiled|++++_)|mashed potatoes|chanterelles|sauce (soy|ketchup|barbecue)|mayonnaise|vegetables [sautéed]|mustard|+saffron
+	)]
+	);
+
+Broth ::= (Cat broth|Cat in broth) [with Herb [and Herb]];
+
+Herb ::= (bay leaf|carrot|parsley|thyme|paprika|catnip|chives|pepper [red|black|white]|cardamom|nutmeg|cloves|+saffron);
+
+Breakfast ::= (Cat omelette [with Herb [and Herb]]|Cat smoothie [with Herb]|Cat cookies|Cat toast) ;
+
+(* ----------------------------------------- *)
+(*   Clutch / Birth                          *)
+(* ----------------------------------------- *)
+
+ClutchEvent ::=
+MS: (the egg of KoboldName ClutchEventAbandonment)|
+FS: (the clutch of KoboldName (was|got) (laid|lost|abandoned|stolen|found) (by its clan|++++_)) |
+Other: (KoboldName (
+			ClutchEventFall|
+			ClutchEventAbandonment|
+			was born|
+			hatched from the egg|
+			appeared from nowhere
+		))
+;
+
+ClutchEventFall ::= fell (from the sky|from the nest|from a waterfall );
+ClutchEventAbandonment ::= was (laid|lost|abandoned|stolen|found) (by its clan|++++_);
+
+Job ::= (cook|barbarian|bard|cleric[of Divine]|druid|warrior|thief|wizard|paladin[of Divine]|ranger|arcanist|captain|collector|sky dancer|mechanic|climber|rain master)|
+(farmer|blacksmith|smith|carpenter|basket weaver|tailor|potter|baker|cobbler|waiter|innkeeper|beggar|bell ringer);
+CurrentJob ::= Job;
+
+ClanHumiliation ::= aided|rescued|enslaved|exterminated|humiliated|swindled|robbed|
+swindled|eaten|chromed|crushed|healed|exiled|[de^]painted;
+
+
+Divine ::= "Mordiggian"|"Saint Ardutan"|"Erath"|"Arash"|"Ardutan"|"Krubal"|a god (invented|at random|any|imaginary|of (evil|good));
+
+SPECIAL2 ::= the SPECIALp.the_a|the SPECIALp.the_b ;
+SPECIALp ::= the_a: (
+                ++++++++++++++++++(
+	                false gods[of (evil|good)][in disguise]|
+	                ["non-"^]dead|watermelons|
+	                golems|clerics[of Divine]|
+	                earthworms [giant|demonic]|bald ones|
+	                "long-haired" ones|+(knights [of Divine|black|white|red|green|of flowers|of hearts|without a horse])|
+	                thieves|bards|sith|colleagues|thieves|
+	                warriors|wise men|wizards[black|red|white|green|of chaos|royal]|
+	                dragons[red|green|black|blue|golden|silver|white]|
+	                gorillas[white|in the mist]|
+	                demons|baatezu|pit fiend|basilisks|bats|vampires|beholder|
+	                bugbear|assassin bunnies|leopards|jaguars|
+	                centaurs|cyclopes|giants[of the hills|of the storms|of the frost|of fire|of the mountains]|
+	                (wolves|boars|ravens|bats|rats) werefolk|
+	                dogs|dolphins|pigs[^lets]|mushrooms|gargoyles|goblins|
+	                golems[of bone|of iron|of stone|of flesh|of amber]|
+	                gremlins|[demi^]liches|sailors|minotaurs|
+	                tanar'ri|tarrasque|titans|troglodytes|tritons|trolls|pornicorns
+                    )
+                    |
+                    ((eaters|makers|breakers|sodomizers) of (SPECIALp.the_a|SPECIALp.the_b)|(servants|faithful|subjects|succubi) of^SPECIAL2)
+        )|
+        the_b: (
+                ++++++++++++++++++(drivers[ of (trucks|chariots|coaches|buses|tandem|[moto^]taxi|rickshaw)]|
+                elves [dark|high|of the woods|sylvan|sea|marinated|drow|grey]|
+                gnolls|jedi|humans|
+                elementals[of fire|of earth|of water|of air]|
+                ancients|efreet|elementals[of air|of water|of fire|of earth]|
+                ettin|halflings|hobbits|hippocampi|illithid|ogres|orcs|
+                skeletons|slaad|unicorns|yugoloth|yeti|zombies|
+                gods [infamous] [of (evil|good)] [in disguise])
+                |
+                ((friends|lovers|worshippers|slaves[sexual]|pushers) of^SPECIAL2)
+            );
+
+
+(* ----------------------------------------- *)
+(*   Story                                   *)
+(* ----------------------------------------- *)
+
+Birth ::=
+	+++((ClutchEvent.MS|ClutchEvent.FS|ClutchEvent.Other) in a place known "as" KoboldOrigin)|
+	a place known "as" KoboldOrigin witnessed the hatching (MS: of the egg|FS: of the clutch) of KoboldName
+;
+
+KoboldStory ::= Birth
+^"," [just hatched] its scales were [of a (beautiful|hideous|revolting|attractive|ugly|slimy|putrid|hairy|shiny)]
+(
+	KoboldColor|BaseColor (then growing up|over time|in a few (months|days)) became KoboldColor
+)^"."
+( StoryClanStartA | StoryClanStartB )
+StoryClanMidA
+\(just before reaching|having reached|having surpassed) adulthood
+(decided to|was forced to|was convinced to|told
+	(everyone|^its ([few] friends|relatives|acquaintances)|a random person|^the Breath) it wanted to
+)
++(flee|escape|(follow (the career|the footsteps|the smell|the example) KinRelative of its PreKinRelative))
+(and|to) (become|be) a [true|great|apprentice|fake] CurrentJob
+[even if [secretly] it would have (preferred|wanted) to ((be|become|pretend to be|pass "as"|eat|cook) a) Job [any|at random]]^"."
+;
+
+
+AntagonistsClanKingdom ::=
+(of^the LandType|
+  of the LandType|
+  of^the LandType|
+  of^the LandType|
+  of^the LandType)
+\(KingdomPart [^KingdomPart] [^KingdomPart] [^KingdomPart] [^VOC]);
+
+AntagonistsClanBase ::= the_a: SPECIALp.the_a | the_b: SPECIALp.the_b ;
+AntagonistsClan ::= the AntagonistsClanBase.the_a [AntagonistsClanKingdom]|the AntagonistsClanBase.the_b [AntagonistsClanKingdom];
+
+StoryClanStartA ::= \(
+           	((
+           		(following |after|during|in the middle of)
+           		(some|various|(one|the last) of the many)
+           		(events|famines|epidemics|wars)
+           		[[now] lost in time|unclear|[carefully|mysteriously]
+           		(forgotten|hidden|censored)|mysterious|forgotten]
+           	)|
+           	(
+           		after [some|too many|few] ["ill-fated"|dark|grim|happy|"cat-filled"] years
+           	))
+           	[the whole|a part of|half of|a random one from|the chief|the shaman]
+           	its clan was UmiliazioneClan (by^AntagonistsClan|by a (clan|army|group|^a tribe|^a band|^a pair|^a crew) of AntagonistsClanBase)^"."
+           );
+
+StoryClanStartB ::=
+\its (++++clan|village)
+(
+  (lived|made a living|(amused itself|tried its hand|survived))
+  with (hunting|fishing|farming|cultivation|breeding|chroming) of^AntagonistsClan
+  |
+  (lived) off
+  (hunting|fishing|([petty] scams|thefts|robberies|hardship) (at the expense of|on behalf of|commissioned by) of^AntagonistsClan)
+  |
+  was (bullied|subjugated|ridiculed|despised|enslaved|dominated|terrorized|abused|mocked|feared|often eaten|targeted)
+  by^AntagonistsClan
+  )^"."
+;
+
+StoryClanMidA ::= (
+\a
+(++war|skirmish|competition of (running|belching|farting|swimming|booger picking))
+broke out between KoboldName^"'s" clan and AntagonistsClan^"."
+\(hostilities continued until young KoboldName^"," was (aided|hindered|disturbed|pushed [by deception]|launched with a catapult|drugged|bribed with KoboldDish)
+by its PreKinRelative (and|++++but) managed to
+(defeat|kill|corrupt|eat|seduce|drive mad|burn|singe)
+the last of^AntagonistsClan^".")
+\(KoboldName^"'s" clan came out of it
+(weakened|exterminated|scattered|satiated|confused|strengthened|glittering|covered in
+  (metal|sauce|glory|shame|liquids (sticky|"foul-smelling")|gold|hair)
+)
+[^"," even though no Job (survived|complained about it|gained anything|was (happy|informed|roasted) about it)]^".")
+);
+
+
+
+RACE ::= [half^]elf [[little|very|slightly|too|almost|apparently]dark] | dwarf |
+	halfling["(hobbit without copyright)"] | elf [of the woods|high] | gnome | CLASS | human | goblin | kobold |
+            dragon[black|red|green|golden|blue|white]|vampire| giant[of the hills|of the storms|of the frost]|
+            ghost|demon|baatezu|beholder|centaur|dinosaur|tyrannosaurus|
+            brontosaurus|diplodocus|velociraptor|[demi^]lich| cyclops|mushroom|golem[of bone|of iron|of stone|of flesh|of amber]|
+            griffin|coward| (wolf|boar|raven|bear|bat|rat)[were]|
+            orc|scorpion|skeleton|serpent|tarrasque|titan|troglodyte|troll|
+            hacker|employee|colleague|hobo|poor sod|triton|unicorn|worm[hyena]|yugoloth|raccoon[goblin];
+CLASS ::= [fake] warrior|wizard|shepherd[ of SPECIALp]|
+            ninja|assassin|thief|traitor|ranger|hunter|cabaret artist|
+            terrorist|priest|trainer[ of SPECIALp]|surgeon[plastic]|gynecologist|SPECIAL1|
+            pilot[of (F1|rally|fighter|airline|tricycles)|space]|farmer|miner|herbalist|
+            dealer|friar[franciscan|dominican|jesuit|heretic]|
+            monk[shintoist|buddhist]|hermit;
+SPECIAL1 ::= storyteller|jester|troubadour|minstrel;
