@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9144407b9276d173a63d179579902647",
+    "content-hash": "866a24d573b8e92c885922825e86a898",
     "packages": [
         {
             "name": "brick/math",
@@ -2611,6 +2611,57 @@
                 }
             ],
             "time": "2025-12-27T19:41:33+00:00"
+        },
+        {
+            "name": "procionegobbo/polygen-php",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Procionegobbo/polygen-php.git",
+                "reference": "06c22c398f34c9c7a6d56612520e03389a4789a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Procionegobbo/polygen-php/zipball/06c22c398f34c9c7a6d56612520e03389a4789a8",
+                "reference": "06c22c398f34c9c7a6d56612520e03389a4789a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4"
+            },
+            "require-dev": {
+                "pestphp/pest": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Polygen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Polygen PHP Contributors"
+                }
+            ],
+            "description": "PHP 8.4+ implementation of Polygen - random sentence generator with BNF-like grammars",
+            "homepage": "https://github.com/Procionegobbo/polygen-php",
+            "keywords": [
+                "bnf",
+                "generator",
+                "grammar",
+                "pml",
+                "polygen",
+                "random"
+            ],
+            "support": {
+                "issues": "https://github.com/Procionegobbo/polygen-php/issues",
+                "source": "https://github.com/Procionegobbo/polygen-php"
+            },
+            "time": "2026-03-15T22:40:17+00:00"
         },
         {
             "name": "psr/clock",
@@ -9762,7 +9813,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3"
+        "php": "^8.5"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"

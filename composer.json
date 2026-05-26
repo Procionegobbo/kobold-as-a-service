@@ -9,9 +9,10 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
+        "php": "^8.5",
         "laravel/framework": "^13.8",
-        "laravel/tinker": "^3.0"
+        "laravel/tinker": "^3.0",
+        "procionegobbo/polygen-php": "^1.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
