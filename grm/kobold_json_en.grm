@@ -246,7 +246,7 @@ KoboldStory ::= Birth
 StoryClanMidA
 \(just before reaching|having reached|having surpassed) adulthood
 (decided to|was forced to|was convinced to|told
-	(everyone|^its ([few] friends|relatives|acquaintances)|a random person|^the Breath) it wanted to
+	(everyone|^its ([few] friends|relatives|acquaintances)|a random person|^the \breath) it wanted to
 )
 +(flee|escape|(follow (the career|the footsteps|the smell|the example) KinRelative of its PreKinRelative))
 (and|to) (become|be) a [true|great|apprentice|fake] CurrentJob
@@ -277,7 +277,7 @@ StoryClanStartA ::= \(
            		after [some|too many|few] ["ill-fated"|dark|grim|happy|"cat-filled"] years
            	))
            	[the whole|a part of|half of|a random one from|the chief|the shaman]
-           	its clan was UmiliazioneClan (by^AntagonistsClan|by a (clan|army|group|^a tribe|^a band|^a pair|^a crew) of AntagonistsClanBase)^"."
+           	its clan was ClanHumiliation (by^AntagonistsClan|by a (clan|army|group|^a tribe|^a band|^a pair|^a crew) of AntagonistsClanBase)^"."
            );
 
 StoryClanStartB ::=

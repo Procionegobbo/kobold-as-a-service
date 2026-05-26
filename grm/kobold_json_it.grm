@@ -246,7 +246,7 @@ StoriaKoboldo ::= Nascita
 StoriaClanMedioA
 \(poco prima di raggiungere|raggiunta|superata) la maggiore età
 (decise di|fu costretto a|fu convinto a|disse a
-	(tutti|^i suoi ([pochi] amici|parenti|conoscenti)|una persona a caso|^l Respiro) di voler
+	(tutti|^i suoi ([pochi] amici|parenti|conoscenti)|una persona a caso|^l \respiro) di voler
 )
 +(fuggire|scappare|(seguire (la carriera|le orme|l'odore|l'esempio) Parentame di suo PreParentame))
 (e|per) (diventare|essere) un [vero|grande|apprendista|falso] MestiereAttuale
