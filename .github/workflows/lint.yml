@@ -32,4 +32,4 @@ jobs:
           npm install
 
       - name: Run Pint
-        run: composer lint
+        run: php ./vendor/bin/pint --test
