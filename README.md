@@ -1,58 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🐉 Kobold As A Service (KAAS)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A procedural generation HTTP API that conjures whimsical Kobold RPG character sheets on demand. Every name, origin, and backstory is woven from [Polygen](https://polygen.org/) grammars — fetch a fresh kobold with a single request.
 
-## About Laravel
+**Live at:** https://kaas.procionegobbo.it
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## API
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Send a `POST` request to `/api/generate-kobold` with a `language` body parameter.
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+curl -X POST https://kaas.procionegobbo.it/api/generate-kobold \
+  -H "Content-Type: application/json" \
+  -d '{"language": "en"}'
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+**Supported languages:** `en` (English), `it` (Italian, default)
 
-## Contributing
+**Rate limit:** 1 request per second per IP. Excess requests return `429 Too Many Requests`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Code examples
 
-## Code of Conduct
+**PHP**
+```php
+$response = (new GuzzleHttp\Client())->post('https://kaas.procionegobbo.it/api/generate-kobold', [
+    'json' => ['language' => 'en'],
+]);
+$kobold = json_decode((string) $response->getBody(), true);
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**JavaScript**
+```js
+const response = await fetch('https://kaas.procionegobbo.it/api/generate-kobold', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ language: 'en' }),
+});
+const kobold = await response.json();
+```
 
-## Security Vulnerabilities
+**Python**
+```python
+import requests
+kobold = requests.post(
+    'https://kaas.procionegobbo.it/api/generate-kobold',
+    json={'language': 'en'},
+).json()
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Tech stack
 
-## License
+- **PHP 8.4** / **Laravel 13**
+- **[polygen-php](https://github.com/procionegobbo/polygen-php)** — PHP port of the Polygen grammar engine
+- **Tailwind CSS v4** / **Vite**
+- **Pest v4** for testing
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Local setup
+
+```bash
+composer run setup
+```
+
+This installs dependencies, copies `.env.example` to `.env`, generates an app key, runs migrations, and builds frontend assets.
+
+To start the development server:
+
+```bash
+composer run dev
+```
+
+## Testing
+
+```bash
+php artisan test --compact
+```
+
+## Credits
+
+Powered by [polygen-php](https://github.com/procionegobbo/polygen-php), a PHP port of [Polygen](https://polygen.org/) by Ulisse Spanò.
+Inspired by the tabletop adventures and podcasts of [FumbleGDR](https://www.fumblegdr.it).
+Made with ❤️ by [Federico "Procionegobbo" Maiorini](https://procionegobbo.it).
