@@ -11,6 +11,7 @@ nixPkgs = [
 
 [phases.build]
 cmds = [
+    "npm install -g n && n 22",
     "mkdir -p /etc/supervisor/conf.d/",
     "cp /assets/worker-*.conf /etc/supervisor/conf.d/",
     "cp /assets/supervisord.conf /etc/supervisord.conf",
