@@ -123,4 +123,19 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Throttle Bypassers
+    |--------------------------------------------------------------------------
+    |
+    | Pre-shared secrets that, when supplied via the X-Bypass-Key header,
+    | allow a caller to skip the kobold-api rate limiter. Configure with a
+    | comma-separated list in the THROTTLE_BYPASSERS environment variable.
+    |
+    */
+
+    'throttle_bypassers' => array_filter(
+        array_map('trim', explode(',', (string) env('THROTTLE_BYPASSERS', ''))),
+    ),
+
 ];

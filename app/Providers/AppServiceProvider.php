@@ -14,6 +14,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RateLimiter::for('kobold-api', function (Request $request): Limit {
+            if ($request->attributes->get('throttle_bypass') === true) {
+                return Limit::none();
+            }
+
             return Limit::perSecond(1)->by($request->ip());
         });
     }

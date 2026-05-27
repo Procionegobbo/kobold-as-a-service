@@ -11,3 +11,8 @@
 - [009-homepage-inspirations-links-footer.md](COMPLETED/009-homepage-inspirations-links-footer.md)
 - [010-homepage-feature-tests.md](COMPLETED/010-homepage-feature-tests.md)
 - [011-env-example-app-name.md](COMPLETED/011-env-example-app-name.md)
+- [012-throttle-bypass-config.md](COMPLETED/012-throttle-bypass-config.md)
+- [013-throttle-bypass-middleware.md](COMPLETED/013-throttle-bypass-middleware.md)
+- [014-throttle-bypass-route-wiring.md](COMPLETED/014-throttle-bypass-route-wiring.md)
+- [015-throttle-bypass-documentation.md](COMPLETED/015-throttle-bypass-documentation.md)
+- [016-throttle-bypass-tests.md](COMPLETED/016-throttle-bypass-tests.md)
