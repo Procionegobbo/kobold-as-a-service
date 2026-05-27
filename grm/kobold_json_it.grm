@@ -12,7 +12,7 @@ S ::=
     "\"}"
 ;
 
-Nomekoboldo ::= \(
+Nomekoboldo := \(
     (s|r|p|VOC|++k)^KobPARTE
     ^(KobPARTE)
 );
@@ -20,8 +20,8 @@ Nomekoboldo ::= \(
 KobPARTE ::= ass|and|VOC^r[^r]|VOC^ch|VOC^rk|r[^VOC][^(b|k|l|s|t)];
 VOC ::= a|e|i|++o|++u|y;
 
-CogNomekoboldo ::= ++++(\Prefisso ((++++k|r|t|p|s|d|f|g|l|z|c|v|m)^KobPARTE2^(KobPARTE2)^VOC))|(_);
-Originekoboldo ::= KobREGNO(_);
+CogNomekoboldo := ++++(\Prefisso (\(++++k|r|t|p|s|d|f|g|l|z|c|v|m)^KobPARTE2^(KobPARTE2)^VOC))|(_);
+Originekoboldo := KobREGNO(_);
 KobPARTE2 ::= VOC^ss
             |VOC^n[^d]
             |VOC^r[^r]
@@ -69,7 +69,7 @@ ColoreBase ::= ++++ColoreCromatico
     |ColoreCristallo
     |++ColoreFumble;
 
-Colorekoboldo ::= ColoreBase (e ColoreBase|+++++++++_);
+Colorekoboldo := ColoreBase (e ColoreBase|+++++++++_);
 
 ColoreCromatico ::= rosso|verde|blu|nero|giallo|arancione|marrone|bianco|azzurro|viola|porpora;
 ColoreMetallico ::= oro|bronzo|argento|platino|mithril|oricalco|ferro|bario;
@@ -83,7 +83,7 @@ ColoreFumble ::= (prosmatico|vermiglio|oro|nero|bianco|rosso|blu|verde|"Bah..."|
 	metallo|rosa|"Kamaleonte (Koboleonte)"|"Tigrato Grigio") ;
 
 
-SegnoParticolare ::= nessuno|
+SegnoParticolare := nessuno|
 	(
         crede di [non] essere|si finge|nasconde di [non] essere|nega di essere|+era|_
     )(
@@ -107,7 +107,7 @@ SegnoParticolare ::= nessuno|
 (*   Parentela                               *)
 (* ----------------------------------------- *)
 
-ParentelaKoboldo ::= Parentela di KoboldoFumble;
+ParentelaKoboldo := Parentela di KoboldoFumble;
 
 
 KoboldoFumble ::= \(krubal|skrudo|stupido idiota|kribug|kerri|ukrabal|nonno kenny);
@@ -128,7 +128,7 @@ Parentame ::= (
 (*   Cibo preferito                          *)
 (* ----------------------------------------- *)
 
-PiattoKoboldo ::=  (+Arrosto|+Brodo|Colazione) (alla KoboldoFumble|++++_);
+PiattoKoboldo :=  (+Arrosto|+Brodo|Colazione) (alla KoboldoFumble|++++_);
 
 Gatto ::= (++++gatto [siamese|soriano|rosso|persiano|nudo|abissino|d'angora|orientale]
 		|felino|gatto selvatico|caracal)
@@ -182,7 +182,7 @@ EventoCovataAbbandono ::= venne (deposto|perso|abbandonato|rubato|trovato) (dal 
 
 Mestiere ::= (cuoco|barbaro|bardo|chierico[di Divino]|druido|guerriero|ladro|mago|paladino[di Divino]|ranger|arcanero|capitano|collezionista|danzatore dei cieli|meccanico|scalatore|signore delle piogge)|
 (contadino|maniscalco|fabbro|falegname|cestaio|sarto|vasaio|panettiere|calzolaio|cameriere|locandiere|accattone|campanaro);
-MestiereAttuale ::= Mestiere;
+MestiereAttuale := Mestiere;
 
 UmiliazioneClan ::= aiutato|soccorso|schiavizzato|sterminato|umiliato|raggirato|derubato|
 raggirato|mangiato|cromato|schiacciato|curato|esiliato|[s^]verniciato;
@@ -237,7 +237,7 @@ Nascita ::=
 	un luogo conosciuto come Originekoboldo vide la schiusa (MS: dell'uovo|FS: della covata) di Nomekoboldo
 ;
 
-StoriaKoboldo ::= Nascita
+StoriaKoboldo := Nascita
 ^"," [appena nato] le sue scaglie erano [di un (bellissimo|orrendo|ributtante|attraente|laido|viscido|putrido|peloso|brillante)]
 (
 	Colorekoboldo|ColoreBase (poi crescendo|col tempo|in pochi (mesi|giorni)) divennero Colorekoboldo
