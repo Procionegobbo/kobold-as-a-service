@@ -47,6 +47,19 @@ kobold = requests.post(
 ).json()
 ```
 
+### Throttle bypass
+
+If you need to exceed the 1 req/s rate limit, add an `X-Bypass-Key` header with a pre-shared secret:
+
+```bash
+curl -X POST https://kaas.procionegobbo.it/api/generate-kobold \
+  -H "Content-Type: application/json" \
+  -H "X-Bypass-Key: your-secret-key" \
+  -d '{"language": "en"}'
+```
+
+Requests carrying a valid key bypass the rate limiter entirely. Keys are configured server-side via the `THROTTLE_BYPASSERS` environment variable (comma-separated list). Contact the operator to request a key.
+
 ## Tech stack
 
 - **PHP 8.4** / **Laravel 13**
