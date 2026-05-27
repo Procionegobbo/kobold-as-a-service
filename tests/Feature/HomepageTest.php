@@ -58,11 +58,18 @@ test('homepage contains a live generated kobold with all nine fields', function 
     }
 });
 
-test('homepage passes a kobold array to the view', function () {
+test('homepage passes both kobold arrays to the view', function () {
     $this->get(route('home'))
-        ->assertViewHas('kobold')
-        ->assertViewHas('kobold.KoboldName')
-        ->assertViewHas('kobold.KoboldJob');
+        ->assertViewHas('koboldEn')
+        ->assertViewHas('koboldEn.KoboldName')
+        ->assertViewHas('koboldIt')
+        ->assertViewHas('koboldIt.KoboldName');
+});
+
+test('homepage shows available languages', function () {
+    $this->get(route('home'))
+        ->assertSee('en', false)
+        ->assertSee('it', false);
 });
 
 test('kobold output is cached and the service is only called once per cache window', function () use ($koboldFields) {
@@ -70,6 +77,7 @@ test('kobold output is cached and the service is only called once per cache wind
 
     $this->mock(KoboldGeneratorService::class, function ($mock) use ($sample) {
         $mock->shouldReceive('generate')->with('en')->once()->andReturn($sample);
+        $mock->shouldReceive('generate')->with('it')->once()->andReturn($sample);
     });
 
     $this->get(route('home'))->assertOk();

@@ -132,20 +132,23 @@ kobold = response.json()</code></pre>
         <section class="py-12 sm:py-16">
             <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">Sample Output</h2>
             <p class="mt-3 max-w-2xl text-[#706f6c] dark:text-[#A1A09A]">
-                Every field below is generated live by the Polygen grammar engine and changes on each page load.
+                Every field is generated live by the Polygen grammar engine and changes on each page load.
+                Currently available languages: <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">English (<code>en</code>)</span> and <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">Italian (<code>it</code>)</span>.
             </p>
 
-            @if ($kobold)
-                <div class="mt-8 overflow-hidden rounded-xl border border-[#19140035] bg-[#161615] dark:border-[#3E3E3A]">
-                    <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
-                        <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
-                        <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
-                        <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
-                        <span class="ml-2 text-xs text-[#A1A09A]">POST /api/generate-kobold</span>
+            <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                @foreach ([['lang' => 'en', 'label' => 'English', 'kobold' => $koboldEn], ['lang' => 'it', 'label' => 'Italian', 'kobold' => $koboldIt]] as $sample)
+                    <div class="overflow-hidden rounded-xl border border-[#19140035] bg-[#161615] dark:border-[#3E3E3A]">
+                        <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+                            <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
+                            <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+                            <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
+                            <span class="ml-2 text-xs text-[#A1A09A]">language={{ $sample['lang'] }} — {{ $sample['label'] }}</span>
+                        </div>
+<pre class="overflow-x-auto whitespace-pre-wrap break-words p-4 text-sm leading-relaxed text-[#EDEDEC]"><code>{{ json_encode($sample['kobold'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</code></pre>
                     </div>
-<pre class="overflow-x-auto whitespace-pre-wrap break-words p-4 text-sm leading-relaxed text-[#EDEDEC]"><code>{{ json_encode($kobold, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</code></pre>
-                </div>
-            @endif
+                @endforeach
+            </div>
         </section>
 
         {{-- Inspirations & Credits --}}
@@ -153,10 +156,13 @@ kobold = response.json()</code></pre>
             <div class="rounded-xl border border-[#19140035] bg-[#1b1b18]/[0.02] p-6 sm:p-8 dark:border-[#3E3E3A] dark:bg-white/[0.02]">
                 <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">Standing on the shoulders of Kobolds</h2>
                 <p class="mt-4 max-w-3xl leading-relaxed text-[#706f6c] dark:text-[#A1A09A]">
-                    KAAS is powered by the
+                    KAAS is powered by
+                    <a href="https://github.com/procionegobbo/polygen-php" target="_blank" rel="noopener noreferrer"
+                       class="font-medium text-[#1b1b18] underline decoration-dotted underline-offset-4 hover:decoration-solid dark:text-[#EDEDEC]">polygen-php</a>,
+                    a PHP port of the original
                     <a href="https://polygen.org/" target="_blank" rel="noopener noreferrer"
                        class="font-medium text-[#1b1b18] underline decoration-dotted underline-offset-4 hover:decoration-solid dark:text-[#EDEDEC]">Polygen</a>
-                    generative grammar engine, which turns compact grammar files into endless procedural prose.
+                    by Ulisse Spanò.
                     The project was inspired by the tabletop adventures and podcasts of
                     <a href="https://www.fumblegdr.it" target="_blank" rel="noopener noreferrer"
                        class="font-medium text-[#1b1b18] underline decoration-dotted underline-offset-4 hover:decoration-solid dark:text-[#EDEDEC]">FumbleGDR</a>
@@ -179,6 +185,7 @@ kobold = response.json()</code></pre>
                         ['label' => 'polygen-php on Packagist', 'url' => 'https://packagist.org/packages/procionegobbo/polygen-php'],
                         ['label' => 'Laravel', 'url' => 'https://laravel.com'],
                         ['label' => 'procionegobbo.it', 'url' => 'https://procionegobbo.it'],
+                        ['label' => 'chimera-forge.it', 'url' => 'https://chimera-forge.it'],
                     ];
                 @endphp
 

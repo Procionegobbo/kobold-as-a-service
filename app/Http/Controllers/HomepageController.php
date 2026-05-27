@@ -16,12 +16,18 @@ class HomepageController extends Controller
      */
     public function __invoke(KoboldGeneratorService $service): View
     {
-        $kobold = Cache::remember(
-            'homepage.kobold',
+        $koboldEn = Cache::remember(
+            'homepage.kobold.en',
             15,
             fn (): array => $service->generate('en'),
         );
 
-        return view('home', compact('kobold'));
+        $koboldIt = Cache::remember(
+            'homepage.kobold.it',
+            15,
+            fn (): array => $service->generate('it'),
+        );
+
+        return view('home', compact('koboldEn', 'koboldIt'));
     }
 }

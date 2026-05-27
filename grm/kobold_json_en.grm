@@ -12,7 +12,7 @@ S ::=
     "\"}"
 ;
 
-KoboldName ::= \(
+KoboldName := \(
     (s|r|p|VOC|++k)^KobPART
     ^(KobPART)
 );
@@ -20,8 +20,8 @@ KoboldName ::= \(
 KobPART ::= ass|and|VOC^r[^r]|VOC^ch|VOC^rk|r[^VOC][^(b|k|l|s|t)];
 VOC ::= a|e|i|++o|++u|y;
 
-KoboldSurname ::= ++++(\Prefix ((++++k|r|t|p|s|d|f|g|l|z|c|v|m)^KobPART2^(KobPART2)^VOC))|(_);
-KoboldOrigin ::= KobKINGDOM(_);
+KoboldSurname := ++++(\Prefix (\(++++k|r|t|p|s|d|f|g|l|z|c|v|m)^KobPART2^(KobPART2)^VOC))|(_);
+KoboldOrigin := KobKINGDOM(_);
 KobPART2 ::= VOC^ss
             |VOC^n[^d]
             |VOC^r[^r]
@@ -69,7 +69,7 @@ BaseColor ::= ++++ChromaticColor
     |CrystalColor
     |++FumbleColor;
 
-KoboldColor ::= BaseColor (and BaseColor|+++++++++_);
+KoboldColor := BaseColor (and BaseColor|+++++++++_);
 
 ChromaticColor ::= red|green|blue|black|yellow|orange|brown|white|sky blue|violet|purple;
 MetallicColor ::= gold|bronze|silver|platinum|mithril|orichalcum|iron|barium;
@@ -83,7 +83,7 @@ FumbleColor ::= (prismatic|vermillion|gold|black|white|red|blue|green|"Bah..."|"
 	metal|pink|"Kamaleonte (Koboleonte)"|"Tiger grey") ;
 
 
-SpecialTrait ::= none|
+SpecialTrait := none|
 	(
         believes [not] to be|pretends to be|hides [not] being|denies being|+was|_
     )(
@@ -107,10 +107,10 @@ SpecialTrait ::= none|
 (*   Kinship                                 *)
 (* ----------------------------------------- *)
 
-KoboldKinship ::= Kinship of KoboldFumble;
+KoboldKinship := Kinship of KoboldFumble;
 
 
-KoboldFumble ::= \(krubal|skrudo|stupid idiot|kribug|kerri|ukrabal|grandpa kenny);
+KoboldFumble ::= \(krubal|skrudo|stupid \idiot|kribug|kerri|ukrabal|grandpa kenny);
 
 Kinship ::= PreKinRelative KinRelative ;
 
@@ -128,7 +128,7 @@ KinRelative ::= (
 (*   Favorite food                           *)
 (* ----------------------------------------- *)
 
-KoboldDish ::=  (+Roast|+Broth|Breakfast) (KoboldFumble style|++++_);
+KoboldDish :=  (+Roast|+Broth|Breakfast) (KoboldFumble style|++++_);
 
 Cat ::= (++++cat [siamese|tabby|red|persian|hairless|abyssinian|angora|oriental]
 		|feline|wild cat|caracal)
@@ -182,7 +182,7 @@ ClutchEventAbandonment ::= was (laid|lost|abandoned|stolen|found) (by its clan|+
 
 Job ::= (cook|barbarian|bard|cleric[of Divine]|druid|warrior|thief|wizard|paladin[of Divine]|ranger|arcanist|captain|collector|sky dancer|mechanic|climber|rain master)|
 (farmer|blacksmith|smith|carpenter|basket weaver|tailor|potter|baker|cobbler|waiter|innkeeper|beggar|bell ringer);
-CurrentJob ::= Job;
+CurrentJob := Job;
 
 ClanHumiliation ::= aided|rescued|enslaved|exterminated|humiliated|swindled|robbed|
 swindled|eaten|chromed|crushed|healed|exiled|[de^]painted;
@@ -237,7 +237,7 @@ Birth ::=
 	a place known "as" KoboldOrigin witnessed the hatching (MS: of the egg|FS: of the clutch) of KoboldName
 ;
 
-KoboldStory ::= Birth
+KoboldStory := Birth
 ^"," [just hatched] its scales were [of a (beautiful|hideous|revolting|attractive|ugly|slimy|putrid|hairy|shiny)]
 (
 	KoboldColor|BaseColor (then growing up|over time|in a few (months|days)) became KoboldColor
