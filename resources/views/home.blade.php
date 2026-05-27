@@ -55,6 +55,9 @@
                 request to <code class="rounded bg-[#1b1b18]/5 px-1.5 py-0.5 text-sm dark:bg-white/10">/api/generate-kobold</code>
                 and get a complete character sheet back. Pick your language:
             </p>
+            <p class="mt-2 text-sm text-[#706f6c] dark:text-[#A1A09A]">
+                Rate limit: <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">1 request per second</span> per IP. Excess requests receive a <code class="rounded bg-[#1b1b18]/5 px-1.5 py-0.5 text-sm dark:bg-white/10">429 Too Many Requests</code> response.
+            </p>
 
             <div class="mt-8 overflow-hidden rounded-xl border border-[#19140035] dark:border-[#3E3E3A]"
                  data-code-tabs>
