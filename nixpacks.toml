@@ -1,12 +1,6 @@
 [phases.setup]
 nixPkgs = ["...", "python311Packages.supervisor"]
 
-[phases.install]
-cmds = [
-    "mkdir -p /app/bootstrap/cache",
-    "..."
-]
-
 [phases.build]
 cmds = [
     "mkdir -p /etc/supervisor/conf.d/",

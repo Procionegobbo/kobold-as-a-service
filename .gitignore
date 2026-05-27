@@ -27,6 +27,7 @@ Homestead.yaml
 Thumbs.db
 
 # Project exclude paths
-/bootstrap/cache/
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
 /storage/app/
 /storage/framework/
