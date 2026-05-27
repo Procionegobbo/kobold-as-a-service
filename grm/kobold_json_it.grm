@@ -1,14 +1,14 @@
 
 S ::=
-    "{\"Nomekoboldo\":\""^Nomekoboldo^
-    "\",\"CogNomekoboldo\":\""^CogNomekoboldo^
-    "\",\"Originekoboldo\":\""^Originekoboldo^
-    "\",\"Colorekoboldo\":\""^Colorekoboldo^
-    "\",\"SegnoParticolare\":\""^SegnoParticolare^
-    "\",\"ParentelaKoboldo\":\""^ParentelaKoboldo^
-    "\",\"PiattoKoboldo\":\""^PiattoKoboldo^
-    "\",\"StoriaKoboldo\":\""^StoriaKoboldo^
-    "\",\"MestiereKoboldo\":\""^MestiereAttuale^
+    "{\"KoboldName\":\""^Nomekoboldo^
+    "\",\"KoboldSurname\":\""^CogNomekoboldo^
+    "\",\"KoboldOrigin\":\""^Originekoboldo^
+    "\",\"KoboldColor\":\""^Colorekoboldo^
+    "\",\"SpecialTrait\":\""^SegnoParticolare^
+    "\",\"KoboldKinship\":\""^ParentelaKoboldo^
+    "\",\"KoboldDish\":\""^PiattoKoboldo^
+    "\",\"KoboldStory\":\""^StoriaKoboldo^
+    "\",\"KoboldJob\":\""^MestiereAttuale^
     "\"}"
 ;
 

@@ -3,15 +3,15 @@
 use App\Services\KoboldGeneratorService;
 
 $italianKeys = [
-    'Nomekoboldo',
-    'CogNomekoboldo',
-    'Originekoboldo',
-    'Colorekoboldo',
-    'SegnoParticolare',
-    'ParentelaKoboldo',
-    'PiattoKoboldo',
-    'StoriaKoboldo',
-    'MestiereKoboldo',
+    'KoboldName',
+    'KoboldSurname',
+    'KoboldOrigin',
+    'KoboldColor',
+    'SpecialTrait',
+    'KoboldKinship',
+    'KoboldDish',
+    'KoboldStory',
+    'KoboldJob',
 ];
 
 $englishKeys = [
