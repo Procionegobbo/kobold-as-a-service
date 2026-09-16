@@ -190,21 +190,24 @@ kobold = response.json()</code></pre>
             <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 @php
                     $ecosystemLinks = [
-                        ['label' => 'polygen-php on GitHub', 'description' => 'BNF-style random sentence generator', 'url' => 'https://github.com/procionegobbo/polygen-php'],
-                        ['label' => 'polygen-php on Packagist', 'description' => 'Composer package for polygen-php', 'url' => 'https://packagist.org/packages/procionegobbo/polygen-php'],
-                        ['label' => 'Federico Maiorini', 'description' => 'Backend dev & GM, personal blog', 'url' => 'https://procionegobbo.it'],
-                        ['label' => 'Chimera Forge', 'description' => 'AI art for tabletop RPG sessions', 'url' => 'https://chimera-forge.it'],
-                        ['label' => 'Kichand the KoboldBot', 'description' => 'Discord bot that summons koboldi', 'url' => 'https://kichand.procionegobbo.it'],
-                        ['label' => 'Laravel', 'description' => 'The PHP framework behind KAAS', 'url' => 'https://laravel.com'],
+                        ['label' => 'polygen-php on GitHub', 'description' => 'BNF-style random sentence generator', 'url' => 'https://github.com/procionegobbo/polygen-php', 'image' => 'https://github.githubassets.com/favicons/favicon.png'],
+                        ['label' => 'polygen-php on Packagist', 'description' => 'Composer package for polygen-php', 'url' => 'https://packagist.org/packages/procionegobbo/polygen-php', 'image' => 'https://packagist.org/favicon.ico'],
+                        ['label' => 'Federico Maiorini', 'description' => 'Backend dev & GM, personal blog', 'url' => 'https://procionegobbo.it', 'image' => 'https://procionegobbo.it/favicon.png'],
+                        ['label' => 'Chimera Forge', 'description' => 'AI art for tabletop RPG sessions', 'url' => 'https://chimera-forge.it', 'image' => 'https://chimera-forge.it/apple-touch-icon.png'],
+                        ['label' => 'Kichand the KoboldBot', 'description' => 'Discord bot that summons koboldi', 'url' => 'https://kichand.procionegobbo.it', 'image' => 'https://kichand.procionegobbo.it/assets/kichand-icon.jpg'],
+                        ['label' => 'Laravel', 'description' => 'The PHP framework behind KAAS', 'url' => 'https://laravel.com', 'image' => 'https://laravel.com/img/favicon/apple-touch-icon.png'],
                     ];
                 @endphp
 
                 @foreach ($ecosystemLinks as $link)
                     <a href="{{ $link['url'] }}" target="_blank" rel="noopener noreferrer"
                        class="group flex items-center justify-between rounded-lg border border-[#19140035] px-5 py-4 transition hover:border-[#1915014a] hover:bg-[#1b1b18]/5 dark:border-[#3E3E3A] dark:hover:border-[#62605b] dark:hover:bg-white/5">
-                        <span>
-                            <span class="block font-medium">{{ $link['label'] }}</span>
-                            <span class="block text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ $link['description'] }}</span>
+                        <span class="flex items-center gap-4">
+                            <img src="{{ $link['image'] }}" alt="" class="h-10 w-10 flex-shrink-0 rounded-md object-cover">
+                            <span>
+                                <span class="block font-medium">{{ $link['label'] }}</span>
+                                <span class="block text-sm text-[#706f6c] dark:text-[#A1A09A]">{{ $link['description'] }}</span>
+                            </span>
                         </span>
                         <span class="text-[#706f6c] transition group-hover:translate-x-0.5 dark:text-[#A1A09A]">↗</span>
                     </a>
